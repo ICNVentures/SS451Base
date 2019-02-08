@@ -10,7 +10,7 @@
                 <li class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ng-repeat="t in CatList">
 
                     <div class="well" style="border-radius: 5px; border: 1px solid #dbdbdb;">
-                        <a ng-if="t.SubCategories.length > 0 && t.Description && t.Description.indexOf('http') >= 0" target="_blank" href="{{t.Description.split('|')[1]}}">
+                        <a ng-if="t.SubCategories.length == 0 && t.Description && t.Description.indexOf('http') >= 0" target="_blank" href="{{t.Description.split('|')[1]}}">
                             <div style="background-color: #5d5d5d; padding: 1px; border-radius: 5px 5px 0px 0px;">
                                 <h5 ng-bind-html="t.Description.split('|')[0]" style="font-size: 20px; color:#fff; font-family: 'Open Sans', sans-serif;" />
                             </div>
