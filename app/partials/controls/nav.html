@@ -26,7 +26,7 @@
                             <a ng-if="t.SubCategories.length == 0 && t.Description.indexOf('http') >= 0" target="_blank" href="{{t.Description.split('|')[1]}}" style="font-size: 16px;color:#0a3c61;"><b>{{t.Description.split('|')[0]}}</b></a>
                             <a ng-if="t.SubCategories.length == 0 && t.Description.indexOf('http') < 0" href="catalog/{{t.InteropID}}" style="font-size: 16px;color:#0a3c61;"><b>{{t.Description}}</b></a>
                             <ul ng-if="t.SubCategories.length > 0" class="dropdown-menu">
-                                <li><a href="catalog/" style="color:#0a3c61">All {{t.Description}}</a></li>
+                                <li><a href="subcats/{{t.InteropID}}" style="color:#0a3c61">All {{t.Description}}</a></li>
                                 <li ng-repeat="sc in t.SubCategories">
                                     <a href="catalog/{{sc.InteropID}}" style="color:#0a3c61">{{sc.Description}}</a>
                                 </li>

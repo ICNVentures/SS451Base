@@ -42,7 +42,8 @@ four51.app.directive('productlistview', function() {
 four51.app.directive('categorylistview', function() {
     var obj = {
         restrict: "E",
-        templateUrl:'partials/categoryList.html'
+        templateUrl:'partials/categoryList.html',
+        controller: 'CategoryListCtrl'
     };
 
     return obj;
