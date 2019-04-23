@@ -29,8 +29,8 @@
                     <i class="fa fa-user"></i>
                 </div>
                 <div>
-                    <label ng-show="address.CompanyName">{{('Company' | r) + ' ' + ('Name' | r) | xlat}}</label>
-                    <input name="companyname" class="form-control" type="text" ng-model="address.CompanyName" autocomplete="off" placeholder="{{('Company' | r) + ' ' + ('Name' | r) | xlat}}" ng-disabled="address.IsCustEditable == false" />
+                    <label ng-show="true" ng-class="{required: isCompanyRequired()}">{{('Company' | r) + ' ' + ('Name' | r) | xlat}}</label>
+                    <input name="companyname" class="form-control" type="text" ng-model="address.CompanyName" autocomplete="off" placeholder="{{('Company' | r) + ' ' + ('Name' | r) | xlat}}" ng-required="isCompanyRequired()" ng-disabled="address.IsCustEditable == false" />
                     <i class="fa fa-user"></i>
                 </div>
                 <div>
@@ -62,8 +62,7 @@
                 </div>
                 <div ng-show="hasStates()" ng-class="{'view-form-select': !address.State, '': address.State }">
                     <label ng-class="{required: hasStates && address.IsCustEditable != false}">{{'State' | r | xlat}}</label>
-                    <select ng-show="hasStates()" class="form-control" ng-options="state.value as state.label for state in states | filter:country" ng-model="address.State" placeholder="{{'State' | r | xlat}}" ng-required="hasStates() && address.IsCustEditable == false" ng-disabled="address.IsCustEditable == false">
-                    </select>
+                    <select ng-show="hasStates()" class="form-control" ng-options="state.value as state.label for state in states | filter:country" ng-model="address.State" placeholder="{{'State' | r | xlat}}" ng-required="hasStates() && address.IsCustEditable == false" ng-disabled="address.IsCustEditable == false"></select>
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <div>

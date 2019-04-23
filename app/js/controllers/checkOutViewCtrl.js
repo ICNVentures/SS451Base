@@ -19,6 +19,7 @@ function ($scope, $routeParams, $location, $filter, $rootScope, $451, User, Orde
 	$scope.checkOutSection = $scope.hasOrderConfig ? 'order' : 'shipping';
 
     function submitOrder() {
+        setTempUserData();
 	    $scope.displayLoadingIndicator = true;
 		$scope.submitClicked = true;
 	    $scope.errorMessage = null;
@@ -220,6 +221,8 @@ function ($scope, $routeParams, $location, $filter, $rootScope, $451, User, Orde
                 item.ShipLastName = $scope.orderShipAddress.LastName;
             });
         }
+	        
+	    setTempUserData();
 
 	    Order.save($scope.currentOrder,
 	        function(data) {
@@ -245,8 +248,71 @@ function ($scope, $routeParams, $location, $filter, $rootScope, $451, User, Orde
 		        $scope.shippingFetchIndicator = false;
 	        }
         );
-    };
+    }
 
+    function setTempUserData()
+    {
+        var buy = $location.absUrl().split('/')[3];
+
+        if (buy[0] == 'G')
+	    {
+    	    angular.forEach($scope.currentOrder.OrderFields, function(fld) 
+    	    {
+    	        if (fld.Name == "BASE_ORDBY_EMAIL")
+                {
+                    if (fld.Value !== null && fld.value !== '' && fld.Value.length !== 0)
+                    {
+                        $scope.user.Email = fld.Value;
+                    }
+                }
+    	        else if (fld.Name == "BASE_ORDBY_PH")
+                {
+                    if (fld.Value !== null && fld.value !== '' && fld.Value.length !== 0)
+                    {
+                        $scope.user.Phone = fld.Value;
+                    }
+                }
+                else if (fld.Name == "BASE_ORDEREDBY")
+                {
+                    if (fld.Value !== null && fld.value !== '' && fld.Value.length !== 0)
+                    {
+                        var nm = fld.Value.split(' ');
+
+                        if (nm.length == 1)
+                        {
+                            $scope.user.FirstName = nm;
+                        }
+                        else if (nm.length == 2)
+                        {
+                            $scope.user.FirstName = nm[0];
+                            $scope.user.LastName = nm[1];
+                        }
+                        else
+                        {
+                            $scope.user.FirstName = nm[0];
+                            var lname = '';
+                            var sep = '';
+
+                            for (var i = 1; i < nm.length; i++)
+                            {
+                                lname = lname + sep + nm[i];
+                                sep = ' ';
+                            }
+
+                            $scope.user.LastName = lname;
+                        }
+                    }
+                }
+    	    });
+
+	        User.save($scope.user, function(data)
+	        { 
+            });
+        }
+        
+        //console.log('[' + $scope.user.Email + ']');
+    }
+    
     $scope.continueShopping = function() {
 	    if (confirm('Do you want to save changes to your order before continuing?') == true)
 	        saveChanges(function() { $location.path('catalog') });

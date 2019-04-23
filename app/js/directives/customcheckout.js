@@ -263,17 +263,17 @@ function CustomCheckoutCtrl($scope, $location)
 	    {
 	        if (fld.Name == "CF_AOS_PRIMARY")
             {
-                console.log('pri[' + pri + ']');
+                //console.log('pri[' + pri + ']');
                 fld.Value = pri;
             }
             else if (fld.Name == "CF_AOS_REPCODE")
             {
-                console.log('rep[' + rep + ']');
+                //console.log('rep[' + rep + ']');
                 fld.Value = rep;
             }
             else if (fld.Name == "CF_AOS_CUSTOMER")
             {
-            console.log('cus[' + cus + ']');
+                //console.log('cus[' + cus + ']');
                 fld.Value = cus;
             }
         });

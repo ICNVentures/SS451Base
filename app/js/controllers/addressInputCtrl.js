@@ -37,6 +37,24 @@ function ($scope, $rootScope, $location, User, Address, Resources) {
         return ($scope.user.Permissions.contains('BillingAddressPhoneRequired') && $scope.address.IsBilling) || ($scope.user.Permissions.contains('ShipAddressPhoneRequired') && $scope.address.IsShipping) || ($scope.user.Permissions.contains('BillingAddressPhoneRequired') && $scope.user.Permissions.contains('ShipAddressPhoneRequired'));
     };
 
+    // 4/22/2019 - Ken Edwards
+    //
+    // Added to use a user field to check and see if the company name is required on checkout.
+    $scope.isCompanyRequired = function() 
+    {
+        var rc = true;
+
+        angular.forEach($scope.user.CustomFields, function(field) 
+        {
+            if (field.Name.indexOf("SSBCompanyOpt") > -1)
+            {
+                rc = false;
+            }
+        });
+
+        return rc;
+    };
+
     var streetComplete = null;
     var streetNum = null;
     var streetName = null;

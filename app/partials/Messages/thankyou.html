@@ -1,0 +1,22 @@
+<section class="contact-us">
+    <accountnavigation ng-show="user.Permissions.contains('ViewSelfAdmin') || user.Type == 'Customer'" />
+    <div class="panel panel-no-panels">
+        <div class="panel-heading">
+            <h1 class="panel-title panel-primary">{{('Thank You!' | r) + ' ' + ('' | r) | xlat }}</h1>
+        </div>
+        <div class="panel-body" style="font-weight:normal">
+            <p>
+                <h4 style="text-align:center;">
+                    <b>Thank you for your order!</b>
+                </h4>
+
+                <ul>
+                    <li>You may close your browser session, or</li>
+                    <li>Click <a href="/catalog">here</a> to place another order.</li>
+                </ul>
+            </p>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+</section>
